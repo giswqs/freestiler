@@ -239,7 +239,7 @@ pub fn vw_tolerance_for_zoom(zoom: u8) -> f64 {
 pub fn presimplify_line_vw(geom: &Geometry, tolerance: f64) -> Geometry {
     match geom {
         Geometry::LineString(ls) => {
-            let simplified = ls.simplify_vw(&tolerance);
+            let simplified = ls.simplify_vw(tolerance);
             if simplified.0.len() >= 2 {
                 Geometry::LineString(simplified)
             } else {
@@ -247,7 +247,7 @@ pub fn presimplify_line_vw(geom: &Geometry, tolerance: f64) -> Geometry {
             }
         }
         Geometry::MultiLineString(mls) => {
-            let simplified = mls.simplify_vw(&tolerance);
+            let simplified = mls.simplify_vw(tolerance);
             if simplified.0.is_empty() {
                 geom.clone()
             } else {
